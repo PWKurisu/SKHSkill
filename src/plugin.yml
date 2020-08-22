@@ -1,0 +1,6 @@
+main: com.kurisu.skill.SkillPlugin
+name: SkillPlugin
+version: '1.0'
+commands:
+  getb:
+
