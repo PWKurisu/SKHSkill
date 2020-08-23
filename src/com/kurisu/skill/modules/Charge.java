@@ -21,13 +21,15 @@ public class Charge {
         if(this.chargeMap.containsKey(uuid)) {
             if(this.coolDownMap.containsKey(uuid)) {
                 int i = this.chargeMap.get(uuid);
-                long point = System.currentTimeMillis();
-                this.coolDownMap.put(uuid, point);
-                long result = (point - this.coolDownMap.get(uuid))/(this.seconds*1000);
-                System.out.println(result+" "+i);
-                while(result > 0 && i < this.maximum) {
+                long result = System.currentTimeMillis() - this.coolDownMap.get(uuid);
+                while(result > this.seconds*1000 && i < this.maximum) {
                     result -= this.seconds*1000;
                     i = Math.min(i + this.amount, this.maximum);
+                }
+                if(i >= this.maximum) {
+                    this.coolDownMap.remove(uuid);
+                } else {
+                    this.coolDownMap.put(uuid, System.currentTimeMillis()-result);
                 }
                 this.chargeMap.put(uuid, i);
             }
@@ -44,7 +46,9 @@ public class Charge {
     }
     public void useCharge(UUID uuid, int amount) {
         this.chargeMap.put(uuid, this.chargeMap.getOrDefault(uuid, this.maximum)-amount);
-        this.coolDownMap.put(uuid, System.currentTimeMillis());
+        if(!coolDownMap.containsKey(uuid)) {
+            this.coolDownMap.put(uuid, System.currentTimeMillis());
+        }
     }
     public String getChargeFormatString(UUID uuid, String format, boolean b) {
         return b ? String.format(format, getCharge(uuid), this.maximum) : String.format(format, getCharge(uuid));

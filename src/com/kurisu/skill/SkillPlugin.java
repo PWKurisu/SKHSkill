@@ -37,8 +37,13 @@ public class SkillPlugin extends JavaPlugin {
     public Skill getSkill(String name) {
         return this.skills.get(name);
     }
-
-    //끈기 수정+주변 엔티티 수정
-    //config 설정
-    //maven 사용
 }
+
+/*
+git 사용
+maven 사용
+
+추상화 인터페이스
+
+디자인 패턴
+ */

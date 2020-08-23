@@ -1,4 +1,14 @@
+#쿨다운 단위(초)
+
 leap:
   cooldown: 5
   damage: 10
 
+patience:
+  charge-cooldown: 15
+  charge-use: 1
+  charge-max: 4
+  heal: 1000
+
+revenge:
+  cooldown: 60

@@ -21,12 +21,21 @@ public class HealthManager {
 
     public void damageEntities(LivingEntity... entities) {
         for(LivingEntity entity : entities) {
-            entity.damage(this.damage);
+            this.damageEntities(entity);
         }
     }
     public void healEntities(LivingEntity... entities) {
         for(LivingEntity entity : entities) {
-            //heal
+            this.healEntity(entity);
         }
+    }
+    public void damageEntity(LivingEntity entity) {
+        entity.damage(this.damage);
+    }
+    public void healEntity(LivingEntity entity) {
+        entity.setHealth(entity.getHealth()+this.heal);
+    }
+    public void damageEntityOfPercent(LivingEntity entity, int percent) {
+        entity.damage(entity.getHealth()*(percent/100.0));
     }
 }

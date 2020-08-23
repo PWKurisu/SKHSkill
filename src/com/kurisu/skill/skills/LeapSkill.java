@@ -16,14 +16,14 @@ import java.util.UUID;
 
 public class LeapSkill implements Skill {
     private final CoolDown coolDown;
-    private final HealthManager healthManager;
     private final NearbyEntities nearbyEntities;
+    private final HealthManager healthManager;
     private final Set<Player> jumping = new HashSet();
 
     public LeapSkill(int damage, int coolDown) {
         this.coolDown = new CoolDown(coolDown);
-        this.healthManager = new HealthManager(damage);
         this.nearbyEntities = new NearbyEntities(5);
+        this.healthManager = new HealthManager(damage);
     }
 
     public boolean isJumping(Player player){
@@ -55,3 +55,8 @@ public class LeapSkill implements Skill {
         this.healthManager.damageEntities(this.nearbyEntities.getNearbyLivingEntities(player, false));
     }
 }
+
+/*
+[스킬]: 도약
+[발동조건]: 쿨타임
+ */
