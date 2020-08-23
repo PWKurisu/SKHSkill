@@ -24,7 +24,7 @@ public class PatienceSkill implements Skill {
         if(charge.isCharge(uuid, 1)) {
             this.charge.useCharge(uuid, 1);
             player.sendMessage(this.charge.getChargeFormatString(uuid, "끈기 발동! [%s/%s]", true));
-            this.healthManager.healEntities(this.nearbyEntities.getNearbyLivingEntities(player));
+            this.healthManager.healEntities(this.nearbyEntities.getNearbyLivingEntities(player, true));
         } else {
             player.sendMessage(this.charge.getChargeFormatString(uuid, "충전이 필요합니다! [%s/%s]", true));
         }

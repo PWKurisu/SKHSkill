@@ -15,17 +15,25 @@ public class NearbyEntities {
         this.size = size;
     }
 
-    public LivingEntity[] getNearbyLivingEntities(Player player) {
-        return this.getNearbyLivingEntities(player.getLocation());
+    public LivingEntity[] getNearbyLivingEntities(Player player, boolean selfIn) {
+        List<LivingEntity> entities = this.getNearbyLivingEntitiesList(player.getLocation());
+        if(!selfIn) {
+            entities.remove(player);
+        }
+        return entities.toArray(new LivingEntity[0]);
     }
 
-    private LivingEntity[] getNearbyLivingEntities(Location location) {
+    public LivingEntity[] getNearbyLivingEntities(Location location) {
+        return this.getNearbyLivingEntitiesList(location).toArray(new LivingEntity[0]);
+    }
+
+    private List<LivingEntity> getNearbyLivingEntitiesList(Location location) {
         List<LivingEntity> entities = new ArrayList<>();
         for(Entity entity : location.getWorld().getEntities()) {
             if(entity instanceof LivingEntity && location.distance(entity.getLocation()) <= size) {
                 entities.add((LivingEntity) entity);
             }
         }
-        return entities.toArray(new LivingEntity[0]);
+        return entities;
     }
 }

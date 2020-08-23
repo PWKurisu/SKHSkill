@@ -14,7 +14,7 @@ public class SkillPlugin extends JavaPlugin {
     private final SkillBookListener skillBookListener;
 
     public SkillPlugin() {
-        skills.put("도약", new LeapSkill(10, 5));
+        skills.put("도약", new LeapSkill(100, 5));
         skills.put("끈기", new PatienceSkill());
         this.skillBookListener = new SkillBookListener(this);
     }
@@ -40,5 +40,5 @@ public class SkillPlugin extends JavaPlugin {
 
     //끈기 수정+주변 엔티티 수정
     //config 설정
-    //git 사용
+    //maven 사용
 }

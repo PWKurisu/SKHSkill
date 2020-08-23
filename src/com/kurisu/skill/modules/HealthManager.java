@@ -10,7 +10,10 @@ public class HealthManager {
         this.heal = 0;
         this.damage = 0;
     }
-
+    public HealthManager(int amount) {
+        this.heal = amount;
+        this.damage = amount;
+    }
     public HealthManager(int heal, int damage) {
         this.heal = heal;
         this.damage = damage;
@@ -21,7 +24,6 @@ public class HealthManager {
             entity.damage(this.damage);
         }
     }
-
     public void healEntities(LivingEntity... entities) {
         for(LivingEntity entity : entities) {
             //heal

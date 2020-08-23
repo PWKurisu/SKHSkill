@@ -1,6 +1,7 @@
 package com.kurisu.skill.skills;
 
 import com.kurisu.skill.modules.CoolDown;
+import com.kurisu.skill.modules.HealthManager;
 import com.kurisu.skill.modules.NearbyEntities;
 import com.kurisu.skill.util.NumberInsert;
 import org.bukkit.GameMode;
@@ -14,13 +15,15 @@ import java.util.Set;
 import java.util.UUID;
 
 public class LeapSkill implements Skill {
-    private final int damage;
     private final CoolDown coolDown;
+    private final HealthManager healthManager;
+    private final NearbyEntities nearbyEntities;
     private final Set<Player> jumping = new HashSet();
 
     public LeapSkill(int damage, int coolDown) {
-        this.damage = damage;
         this.coolDown = new CoolDown(coolDown);
+        this.healthManager = new HealthManager(damage);
+        this.nearbyEntities = new NearbyEntities(5);
     }
 
     public boolean isJumping(Player player){
@@ -49,8 +52,6 @@ public class LeapSkill implements Skill {
         if (this.jumping.isEmpty()) return;
         if (!this.jumping.remove(player)) return;
         event.setCancelled(true);
-        //NearbyEntities nearbyEntities = new NearbyEntities(player, 5);
-        //nearbyEntities.damageNearbyLivingEntities(this.damage, false);
-        //수정 바람
+        this.healthManager.damageEntities(this.nearbyEntities.getNearbyLivingEntities(player, false));
     }
 }

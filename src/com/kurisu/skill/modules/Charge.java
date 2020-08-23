@@ -24,10 +24,10 @@ public class Charge {
                 long point = System.currentTimeMillis();
                 this.coolDownMap.put(uuid, point);
                 long result = (point - this.coolDownMap.get(uuid))/(this.seconds*1000);
+                System.out.println(result+" "+i);
                 while(result > 0 && i < this.maximum) {
                     result -= this.seconds*1000;
                     i = Math.min(i + this.amount, this.maximum);
-                    System.out.println(result+" "+i);
                 }
                 this.chargeMap.put(uuid, i);
             }

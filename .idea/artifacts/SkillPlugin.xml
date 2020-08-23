@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="SkillPlugin">
+    <output-path>$USER_HOME$/Documents/SKH/1.12.2/plugins</output-path>
+    <root id="archive" name="SkillPlugin.jar">
+      <element id="module-output" name="SKHSkill" />
+    </root>
+  </artifact>
+</component>
